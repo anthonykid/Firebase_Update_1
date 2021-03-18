@@ -12,6 +12,7 @@ import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 
 class MainActivity : AppCompatActivity() {
 
@@ -46,18 +47,32 @@ class MainActivity : AppCompatActivity() {
             firebaseAuth?.createUserWithEmailAndPassword(email_text,password)?.addOnCompleteListener(object : OnCompleteListener<AuthResult>{
                 override fun onComplete(task: Task<AuthResult>) {
                 if(task.isSuccessful){
-                    Toast.makeText(applicationContext, "Account Created", Toast.LENGTH_LONG).show()
+                    Toast.makeText(applicationContext, "Account Created", Toast.LENGTH_SHORT).show()
+                    val user:FirebaseUser = firebaseAuth!!.currentUser!!
+
+                    user.sendEmailVerification().addOnCompleteListener(object : OnCompleteListener<Void>{
+                        override fun onComplete(task: Task<Void>) {
+                            if(task.isSuccessful) {
+                                Toast.makeText(applicationContext, "Please Check Your Email For Verification", Toast.LENGTH_SHORT).show()
+                                startActivity(Intent(this@MainActivity, Login_activity::class.java))
+                            }
+                            else{
+                                val error = task.exception?.message
+                                Toast.makeText(applicationContext, "Error!!!"+error, Toast.LENGTH_LONG).show()
+                            }
+                        }
+                    })
                 }
                     else{
                         val error = task.exception?.message
-                        Toast.makeText(applicationContext, "Error!!!"+error, Toast.LENGTH_LONG).show()
+                        Toast.makeText(applicationContext, "Error!!!"+error, Toast.LENGTH_SHORT).show()
                 }
                 }
             })
         }
     }
 
-    public fun LogIn(view: View) {
+    fun LogIn(view: View) {
         startActivity(Intent(this@MainActivity, Login_activity::class.java))
     }
 }

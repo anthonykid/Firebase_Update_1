@@ -12,6 +12,7 @@ import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 
 class Login_activity : AppCompatActivity() {
 
@@ -41,32 +42,39 @@ class Login_activity : AppCompatActivity() {
         var password_text = user_password?.text.toString().trim()
 
         if(TextUtils.isEmpty(email_text)){
-            Toast.makeText(applicationContext,"This Field Cannot Be Empty", Toast.LENGTH_LONG).show()
+            Toast.makeText(applicationContext,"This Field Cannot Be Empty", Toast.LENGTH_SHORT).show()
         }
         else if (TextUtils.isEmpty(password_text)){
-            Toast.makeText(applicationContext,"This Field Cannot Be Empty", Toast.LENGTH_LONG).show()
+            Toast.makeText(applicationContext,"This Field Cannot Be Empty", Toast.LENGTH_SHORT).show()
         }
         else{
             firebaseAuth?.signInWithEmailAndPassword(email_text, password_text)?.addOnCompleteListener(object : OnCompleteListener<AuthResult>{
                 override fun onComplete(task: Task<AuthResult>) {
                 if (task.isSuccessful){
-                    Toast.makeText(applicationContext,"You are logged in Successfully", Toast.LENGTH_LONG).show()
+                    Toast.makeText(applicationContext,"You are logged in Successfully", Toast.LENGTH_SHORT).show()
+                    val user:FirebaseUser = firebaseAuth?.currentUser!!
+
+                    if (user.isEmailVerified){
+                        startActivity(Intent(this@Login_activity, TestActivity::class.java))
+                    }
+                    else{
+                        Toast.makeText(applicationContext,"Account Hasn't been Verified", Toast.LENGTH_SHORT).show()
+                    }
                 }
                 else{
                     val error = task.exception?.message
-                    Toast.makeText(applicationContext,"Error!!!"+error, Toast.LENGTH_LONG).show()
+                    Toast.makeText(applicationContext,"Error!!!"+error, Toast.LENGTH_SHORT).show()
                 }
-
-
-
-
                 }
 
             })
         }
 
     }
-    public fun Forgot(view: View) {
+    fun Forgot(view: View) {
         startActivity(Intent(this@Login_activity, password_rest::class.java))
+    }
+    fun SignUp (view: View){
+        startActivity(Intent(this@Login_activity, MainActivity::class.java))
     }
 }

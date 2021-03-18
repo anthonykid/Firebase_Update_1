@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TestActivity"
+    android:background="@color/black">
+
+    <LinearLayout
+        android:layout_height="300dp"
+        android:layout_width="300dp"
+        android:id="@+id/widget28"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/welcometxt"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:textSize="26dp"
+        android:textStyle="bold"
+        android:text="WELCOME TO MY APPLICATION \n Hello... Nice To Meet You"
+        android:textColor="#FFFFFF" />
+    </LinearLayout>
+    <Button
+        android:id="@+id/changeEmail_btn"
+        android:layout_below="@id/widget28"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:onClick="changeEmail_btn"
+        android:text="Change Email"
+        />
+
+    <Button
+        android:id="@+id/intentProfile"
+        android:layout_below="@id/changeEmail_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:onClick="Profile"
+        android:text="Update Your Profile"
+        />
+
+</RelativeLayout>

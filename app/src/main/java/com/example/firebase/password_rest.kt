@@ -33,7 +33,6 @@ class password_rest : AppCompatActivity() {
 
     }
     private fun ResetPassword(){
-
         var email = user_email?.text.toString().trim()
 
         if (TextUtils.isEmpty(email)){
@@ -44,18 +43,16 @@ class password_rest : AppCompatActivity() {
                 override fun onComplete(task: Task<Void>) {
                     if (task.isSuccessful){
                         Toast.makeText(applicationContext,"Please Check Your Email For Reset", Toast.LENGTH_LONG).show()
-
                     }
                     else{
                         val error = task.exception?.message
                         Toast.makeText(applicationContext,"Error"+error, Toast.LENGTH_LONG).show()
-
                     }
                 }
             })
         }
     }
-    public fun LogIn1(view: View) {
+    fun LogIn1(view: View) {
         startActivity(Intent(this@password_rest, Login_activity::class.java))
     }
 }

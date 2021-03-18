@@ -11,7 +11,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Firebase">
-        <activity android:name=".password_rest"></activity>
+        <activity android:name=".profile_activity"></activity>
+        <activity android:name=".changeEmail" />
+        <activity android:name=".TestActivity" />
+        <activity android:name=".password_rest" />
         <activity android:name=".Login_activity" />
         <activity android:name=".MainActivity">
             <intent-filter>

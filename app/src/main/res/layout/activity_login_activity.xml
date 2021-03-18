@@ -78,7 +78,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Sign In"
+            android:text="Login"
             app:backgroundTint="#915E5E" />
 
         <Button
@@ -86,6 +86,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:onClick="SignUp"
             android:text="Sign Up"
             app:backgroundTint="#D13B3B" />
     </LinearLayout>
